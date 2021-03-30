@@ -1,7 +1,6 @@
 import { Application, Router, send } from "https://deno.land/x/oak@v6.5.0/mod.ts";
 
 import { getSignatures, addSignature } from "./router.ts";
-import { content } from "./static.ts";
 
 // define port
 const port = 8080;
@@ -35,6 +34,7 @@ app.use(async (ctx, next) => {
 /*
 Routes
 */
+
 router
 .get("/signatures", getSignatures)
 .post("/signatures", addSignature);
@@ -43,11 +43,10 @@ router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-
 // static content
 app.use(async (context) => {
   await send(context, context.request.url.pathname, {
-    root: `${Deno.cwd()}/static`,
+    root: `${Deno.cwd()}/public`,
     index: "index.html",
   });
 });
