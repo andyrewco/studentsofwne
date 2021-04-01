@@ -1,1 +1,4 @@
 */**/node_modules
+./frontend/svelte/public/build/
+
+*/**/.DS_Store
