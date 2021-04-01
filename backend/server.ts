@@ -1,4 +1,4 @@
-import { Application, Router, send } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+import { Application, Router, send } from "https://deno.land/x/oak@v6.5.0/mod.ts"; 
 
 import { getSignatures, addSignature } from "./router.ts";
 
@@ -14,15 +14,14 @@ const router = new Router({prefix: "/api"});
 Middleware
 */
 
-
-// Logger
+// logger
 app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.headers.get("X-Response-Time");
   console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
 });
 
-// Timing
+// timing
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
@@ -43,13 +42,6 @@ router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// static content
-app.use(async (context) => {
-  await send(context, context.request.url.pathname, {
-    root: `${Deno.cwd()}/public`,
-    index: "index.html",
-  });
-});
 
 // start server
 app.listen({port});

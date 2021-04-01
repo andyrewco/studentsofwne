@@ -1,0 +1,6 @@
+#!/bin/bash
+curl -fsSL https://deno.land/x/install/install.sh | sh
+printf "#add deno to path\n" >> ~/.zshrc
+printf 'export PATH="/Users/user/.deno/bin:$PATH"\n' >> ~/.zshrc
+source ~/.zshrc
+
