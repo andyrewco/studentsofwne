@@ -1,7 +1,3 @@
-<script>
-	export let name;
-</script>
-
 <main>
 	<h1>Students of WNE</h1>
 </main>
