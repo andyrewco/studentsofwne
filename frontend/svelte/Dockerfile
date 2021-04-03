@@ -1,15 +1,10 @@
 FROM node:14-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY rollup.config.js ./
-COPY package*.json ./
+COPY . ./
 
 RUN yarn
-
-COPY ./src ./src
-COPY ./public ./public
-
 RUN yarn build
 
 EXPOSE 5000

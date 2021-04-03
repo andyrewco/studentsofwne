@@ -1,5 +1,26 @@
+<script>
+  import { onMount } from "svelte";
+
+  // variables
+  let signatures;
+
+  // on mount
+  onMount(async () => {
+      await fetch(`http://backend/`)
+        .then(r => r.json())
+        .then(data => {
+          signatures = data;
+        });
+    })
+  
+  // stringify
+  signatures = JSON.stringify(signatures);
+</script>
+
 <main>
 	<h1>Students of WNE</h1>
+  <p> {signatures} </p>
+
 </main>
 
 <style>
