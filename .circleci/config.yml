@@ -1,10 +1,19 @@
 version: 2.1
 jobs:
-  build:
+  frontend:
     docker: 
       - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
     steps:
       - checkout
       - run: mv ./frontend/svelte/* /home/circleci/project
+      - run: rm rf ./backend
       - run: yarn
       - run: yarn test:ci
+  backend:
+    docker: 
+      - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
+    steps:
+      - checkout
+      - run: ./backend/ci/install_deno
+      - run: rm ./frontend
+      - run: deno test
