@@ -1,25 +1,25 @@
 <script>
-  import { onMount } from "svelte";
+  async function getSampleData() {
+    const res = await fetch(`http://localhost:8080/api/signatures`);
+    const data = res.json();
 
-  // variables
-  let signatures;
+    if (res.ok) {
+      return data;
+    } else {
+      throw new Error("Didn't work");
+    }
+  }
 
-  // on mount
-  onMount(async () => {
-      await fetch(`http://backend/`)
-        .then(r => r.json())
-        .then(data => {
-          signatures = data;
-        });
-    })
-  
-  // stringify
-  signatures = JSON.stringify(signatures);
+  let promise = getSampleData();
 </script>
 
 <main>
 	<h1>Students of WNE</h1>
-  <p> {signatures} </p>
+  {#await promise}
+    <p> ...waiting </p>
+  {:then value}
+    <p> {value?.msg} </p>
+  {/await}
 
 </main>
 

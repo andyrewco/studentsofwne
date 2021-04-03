@@ -1,4 +1,6 @@
 import { Application, Router, send } from "https://deno.land/x/oak@v6.5.0/mod.ts"; 
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
+
 
 import { getSignatures, addSignature } from "./router.ts";
 
@@ -13,6 +15,13 @@ const router = new Router({prefix: "/api"});
 /*
 Middleware
 */
+
+// cors
+app.use(
+  oakCors({
+    origin: "http://localhost:5000",
+  }),
+);
 
 // logger
 app.use(async (ctx, next) => {
