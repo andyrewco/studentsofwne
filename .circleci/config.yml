@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: mv ./frontend/svelte/* /home/circleci/project
-      - run: rm rf ./backend
+      - run: rm -rf ./backend
       - run: yarn
       - run: yarn test:ci
   backend:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: ./backend/ci/install_deno
-      - run: rm ./frontend
+      - run: rm -rf ./frontend
       - run: deno test
 workflows:
   version: 2
