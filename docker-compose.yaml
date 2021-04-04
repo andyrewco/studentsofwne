@@ -7,8 +7,6 @@ services:
   frontend:
     build: "./frontend/svelte"
     container_name: "frontend"
-    volumes:
-      - "./frontend/svelte:/app"
     ports:
       - 5000:5000
     networks:
@@ -21,8 +19,6 @@ services:
   backend:
     build: "./backend"
     container_name: "backend"
-    volumes:
-      - "./backend:/app"
     ports:
       - 8080:8080
     networks:
