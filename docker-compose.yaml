@@ -34,7 +34,7 @@ services:
     build: "./nginx"
     container_name: "proxy"
     ports:
-      - 80:80
+      - 90:80
     networks:
       default:
         aliases:
