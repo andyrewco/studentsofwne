@@ -41,4 +41,6 @@ services:
     links:
       - backend
       - frontend
+  certbot:
+      image: certbot/certbot
 
