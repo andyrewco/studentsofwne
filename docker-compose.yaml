@@ -30,3 +30,19 @@ services:
         aliases:
           - backend
 
+  proxy:
+    build: "./nginx"
+    container_name: "proxy"
+    ports:
+      - 80:80
+    networks:
+      default:
+        aliases:
+          - proxy
+    depends_on:
+      - backend
+      - frontend
+    links:
+      - backend
+      - frontend
+
