@@ -18,9 +18,7 @@ Middleware
 
 // cors
 app.use(
-  oakCors({
-    origin: "http://localhost:5000",
-  }),
+  oakCors(),
 );
 
 // logger
